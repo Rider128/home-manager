@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "nix": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "automergeType": "pr",
+    "schedule": [
+      "at any time"
+    ]
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "schedule": []
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["nix"],
+      "matchDatasources": ["git-refs"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "minor",
+        "pin"
+      ],
+      "enabled": false,
+      "digest": {
+        "enabled": true
+      }
+    }
+  ]
+
+}

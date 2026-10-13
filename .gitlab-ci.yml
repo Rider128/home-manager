@@ -1,0 +1,22 @@
+include:
+  - project: 'nix/ci-template'
+    ref: 'main'
+    file: 'nix.gitlab-ci.yml'
+
+stages:
+  - test
+  - build
+test:
+  extends: .nix-flake-check
+
+build-perso:
+    extends: .nix-base
+    stage: build
+    script:
+    - nix run "nixpkgs#home-manager" $NIX_BUILD_FLAGS  -- build --show-trace -v -L --flake .#perso
+
+build-pro:
+  extends: .nix-base
+  stage: build
+  script:
+  - nix run "nixpkgs#home-manager" $NIX_BUILD_FLAGS -- build --show-trace -v -L --flake .#pro

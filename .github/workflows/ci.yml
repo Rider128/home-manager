@@ -1,0 +1,50 @@
+name: "CI"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: "Check Flake & Code Quality"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v16
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v9
+
+      - name: Check Nix Flake
+        run: nix flake check --all-systems --no-build
+
+      - name: Check Formatting
+        run: |
+          nix run nixpkgs#nixfmt -- --check $(find . -name "*.nix" -not -path "*/.*")
+
+  build:
+    name: "Build Home Manager Profiles"
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v16
+
+      - name: Setup Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v9
+
+      - name: Build Linux Perso
+        run: nix run nixpkgs#home-manager -- build --flake .#perso -b backup
+
+      - name: Build Linux Pro
+        run: nix run nixpkgs#home-manager -- build --flake .#pro -b backup

@@ -1,0 +1,32 @@
+{ pkgs, colmena, ... }:
+{
+  home.packages = [
+    pkgs.nixd
+    pkgs.nixfmt
+    pkgs.vale
+    pkgs.git
+    pkgs.nix-output-monitor
+    pkgs.shfmt
+    pkgs.termshark
+    #pkgs.ollama
+    pkgs.kubectl
+    pkgs.gitoxide
+    colmena
+    pkgs.restic
+    pkgs.watchexec
+    pkgs.btop
+    pkgs.inetutils
+    pkgs.lazyjj
+    pkgs.lazygit
+    pkgs.lazydocker
+    pkgs.opencode
+    #pkgs.impala
+    pkgs.caligula
+    pkgs.lf
+    pkgs.openbao
+    pkgs.sops
+    pkgs.age
+    pkgs.mycli
+    pkgs.lnav
+  ];
+}

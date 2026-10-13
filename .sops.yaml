@@ -1,0 +1,11 @@
+keys:
+  - &mac age17uj4rjnwt345apmectt38k375dyjl890506gxjpjfkd36t5yqdgqavyz9m
+  - &pro age1769wwm8gtfksqgnql99mlcm3lgxszmjzp2x64q5093wkltxueq0s939qf2
+  - &pyrite age1ggj5qjswg2pc3mazhf62y899qejehwzhjtgmtnz3p9xpw0dmud6s8lu95w
+creation_rules:
+  - path_regex: ^secrets/.*\.ya?ml$
+    key_groups:
+    - age:
+      - *mac
+      - *pro
+      - *pyrite
