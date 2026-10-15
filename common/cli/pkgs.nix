@@ -26,7 +26,6 @@
     pkgs.openbao
     pkgs.sops
     pkgs.age
-    pkgs.mycli
     pkgs.lnav
   ];
 }

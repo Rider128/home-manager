@@ -4,6 +4,7 @@
     # Linux-specific CLI
     pkgs.picocom
     pkgs.nerd-fonts.jetbrains-mono
+    pkgs.mycli
 
     # Linux-specific desktop
     pkgs.copyq
